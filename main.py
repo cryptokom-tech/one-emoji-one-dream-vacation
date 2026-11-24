@@ -9,6 +9,11 @@ import os
 
 EMOJI = "\U0001F30B"  # VOLCANO
 
+# The entry must be exactly one Unicode code point: a single emoji, no
+# trailing newline, no extra text. Guard at import so a bad constant can
+# never reach the output file.
+assert len(EMOJI) == 1 and len(EMOJI.encode("utf-8")) == 4, EMOJI
+
 
 def main() -> None:
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
